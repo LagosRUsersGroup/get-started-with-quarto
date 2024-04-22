@@ -1,0 +1,248 @@
+---
+title: "Get Started with Quarto"
+title-block-banner: true
+author: Ayomide
+date: last-modified
+engine: knitr
+format: 
+  html: 
+    toc: true
+code-annotations: hover
+params:
+  continent_name: "Europe"
+---
+
+# Socio-Economic Indicators Analysis for Countries in `r params$continent_name`
+
+
+### Library
+
+#### Install libraries
+```{r}
+#| eval: false
+
+install.packages(tidyverse)
+install.packages(gapminder)
+install.packages(gt)
+install.packages(glue)
+install.packages(cli)
+```
+
+#### Load libraries
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(gapminder)
+library(gt)
+```
+
+
+```{r}
+#| code-fold: true
+#| code-summary: Reset Default ggplot2 Theme 
+
+
+custome_theme <- theme_minimal() +
+  theme(
+    plot.title = element_text(color = "grey46"),
+    plot.subtitle = element_text(color = "grey46"),
+    axis.title = element_text(color = "grey51")
+  )
+
+theme_set(custome_theme)
+```
+
+<br>
+
+### Data Preprocessing
+
+```{r}
+continent_df <- gapminder |>
+  inner_join(
+    enframe(country_colors) |> rename(country = name, color = value), 
+    by = "country"
+  ) |>
+  filter(continent == params$continent_name) |>
+  select(-continent)
+
+```
+
+
+::: {.bg-primary .text-white .p-4 .m-3 .rounded-2 #my-callout-block}
+
+**Data Summary**  
+Using the gapminder data from version (`r packageVersion("gapminder")`) of the gapminder R package. The selected continent **`r params$continent_name`**, contains a total of `r length(unique(continent_df$country))` unique countries, and the data captures records of `r colnames(continent_df)` from `r min(continent_df$year)` to `r max(continent_df$year)` at 5-year intervals for all countries.
+
+:::
+
+
+::: {.callout-note}
+
+## Data Summary
+
+Using the gapminder data from version (`r packageVersion("gapminder")`) of the gapminder R package. The selected continent **`r params$continent_name`**, contains a total of `r length(unique(continent_df$country))` unique countries, and the data captures records of `r colnames(continent_df)` from `r min(continent_df$year)` to `r max(continent_df$year)` at 5-year intervals for all countries.
+
+:::
+
+
+::: {.callout-tip appearance="simple" collapse="true"} 
+
+## List of countries in `r params$continent_name`
+
+**`r paste0(":", unique(continent_df$country))`**
+
+:::
+
+
+## Code Annotation
+```{r}
+#| eval: false
+
+continent_df |>                                #<1>
+  group_by(country) |>                         #<2>                         
+  summarise(avg_life_exp = mean(lifeExp)) |>   #<3>
+  arrange(desc(avg_life_exp))                  #<4>
+```
+1. The filtered continent data frame.
+2. Group the continent data frame by country.
+3. Summarized the grouped data frame by the average life expectancy for each country for all the years in the data. 
+4. Sort the summarized data by the `avg_life_exp` in descending order.
+
+
+
+
+## Tables
+
+::: {.panel-tabset}
+
+## Markdown
+
+```{r}
+gdp <- continent_df |>
+  slice_max(order_by = gdpPercap, n = 1, with_ties = FALSE) |>
+  select(country, year, gdpPercap) |>
+  as.list()
+```
+
+| Country         | Year         | GDP per Capital                            |
+|:----------------|:-------------|:------------------------------------------:|
+| `r gdp$country` | `r gdp$year` | `r format(gdp$gdpPercap, big.mark = ',') ` |
+
+: Country with the highest GDP per capital {.striped .info .hover}
+
+
+## Kable
+```{r}
+# Get the top 5 countries with the highest GDP per capital
+continent_df |>
+  group_by(country) |>
+  slice_max(order_by = gdpPercap, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  arrange(desc(gdpPercap)) |>
+  slice_head(n = 5) |>
+  select(country, year, gdpPercap) |>
+  
+  knitr::kable(
+    caption = "Top 5 countries with the highest GDP per capital"
+  ) 
+  
+```
+
+
+## gt
+
+```{r}
+#| tbl-cap: "Top 5 countries with the highest GDP per capital"
+
+continent_df |>
+  group_by(country) |>
+  slice_max(order_by = gdpPercap, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  arrange(desc(gdpPercap)) |>
+  slice_head(n = 5) |>
+  select(country, year, gdpPercap) |>
+  
+  gt() |>
+  fmt_number(columns = c(gdpPercap)) |>
+  tab_options(table.width = 600)
+
+```
+
+:::
+
+
+## Charts
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+#| fig-align: center
+#| fig-cap: "Average population count"
+#| fig-cap-location: margin
+#| label: fig-avg-pop-plot
+#| lightbox: true
+
+
+continent_df |>
+  group_by(year) |>
+  summarise(avg_pop = mean(pop)) |>
+  
+  ggplot(aes(x = factor(year), y = avg_pop)) +
+  geom_col(show.legend = FALSE, fill = "dodgerblue3") +
+  scale_y_continuous(
+    labels = scales::label_number(scale_cut = scales::cut_short_scale())
+  ) +
+  labs(
+    x = NULL, 
+    y = "Population", 
+    title = paste("Average Population of Countries in", params$continent_name),
+    subtitle = "From 1952 - 2007 at 5-year interval"
+  )
+
+```
+
+For more info, see @fig-avg-pop-plot
+
+
+
+```{r}
+#| warning: false
+#| layout-ncol: 2
+#| layout-nrow: 1
+#| column: screen-inset-shaded
+#| fig-cap: 
+#|  - GDP-per-Cap 
+#|  - Average GDP-per-Cap 
+
+# GDP per capital
+continent_df |>
+  ggplot(aes(x = year, y = gdpPercap, color = color)) +
+  geom_line(show.legend = FALSE) +
+  scale_y_continuous(
+    labels = scales::label_number(scale_cut = scales::cut_short_scale())
+  ) +
+  labs(
+    x = NULL, 
+    y = "GDP per Capital", 
+    title = "GDP per Capital from 1950 - 2007"
+  )
+
+
+# Average GDP per Capital
+continent_df |>
+  group_by(country, color) |>
+  summarise(avg_gdpp = mean(gdpPercap)) |>
+  
+  ggplot(aes(x = avg_gdpp, y = fct_reorder(country, avg_gdpp), fill = color)) +
+  geom_col(show.legend = FALSE) +
+  scale_x_continuous(labels = scales::label_comma()) +
+  labs(
+    x = "GDP per Capital", 
+    y = "Country", 
+    title = "Average GDP per Capital for each Country"
+  )
+
+```
+
