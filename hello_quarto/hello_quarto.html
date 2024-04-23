@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <details class="code-fold">
-<summary>Reset Default ggplot2 Theme</summary>
+<summary>Reset Default ggplot2 Theme Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>custome_theme <span class="ot">&lt;-</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey46"</span>),</span>
@@ -170,16 +170,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>continent_df <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">enframe</span>(country_colors) <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">country =</span> name, <span class="at">color =</span> value), </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"country"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> params<span class="sc">$</span>continent_name) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> params<span class="sc">$</span>continent_name) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="my-callout-block" class="bg-primary text-white p-4 m-3 rounded-2">
+<div id="my-callout-block" class="bg-primary text-white p-3 m-3 rounded-2">
 <p><strong>Data Summary</strong><br>
-Using the gapminder data from version (1.0.0) of the gapminder R package. The selected continent <strong>Europe</strong>, contains a total of 30 unique countries, and the data captures records of country, year, lifeExp, pop, gdpPercap, color from 1952 to 2007 at 5-year intervals for all countries.</p>
+Using the gapminder data from version (1.0.0) of the gapminder R package. The selected continent <strong>Europe</strong>, contains a total of 30 unique countries, and the data captures records of country, year, lifeExp, pop, gdpPercap from 1952 to 2007 at 5-year intervals for all countries.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -191,7 +187,7 @@ Data Summary
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using the gapminder data from version (1.0.0) of the gapminder R package. The selected continent <strong>Europe</strong>, contains a total of 30 unique countries, and the data captures records of country, year, lifeExp, pop, gdpPercap, color from 1952 to 2007 at 5-year intervals for all countries.</p>
+<p>Using the gapminder data from version (1.0.0) of the gapminder R package. The selected continent <strong>Europe</strong>, contains a total of 30 unique countries, and the data captures records of country, year, lifeExp, pop, gdpPercap from 1952 to 2007 at 5-year intervals for all countries.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
@@ -344,23 +340,23 @@ List of countries in Europe
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(gdpPercap)) <span class="sc">|&gt;</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.width =</span> <span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="vkmnfnsifc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vkmnfnsifc table {
+<div id="fxgtctyecr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fxgtctyecr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vkmnfnsifc thead, #vkmnfnsifc tbody, #vkmnfnsifc tfoot, #vkmnfnsifc tr, #vkmnfnsifc td, #vkmnfnsifc th {
+#fxgtctyecr thead, #fxgtctyecr tbody, #fxgtctyecr tfoot, #fxgtctyecr tr, #fxgtctyecr td, #fxgtctyecr th {
   border-style: none;
 }
 
-#vkmnfnsifc p {
+#fxgtctyecr p {
   margin: 0;
   padding: 0;
 }
 
-#vkmnfnsifc .gt_table {
+#fxgtctyecr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -386,12 +382,12 @@ List of countries in Europe
   border-left-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_caption {
+#fxgtctyecr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vkmnfnsifc .gt_title {
+#fxgtctyecr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -403,7 +399,7 @@ List of countries in Europe
   border-bottom-width: 0;
 }
 
-#vkmnfnsifc .gt_subtitle {
+#fxgtctyecr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -415,7 +411,7 @@ List of countries in Europe
   border-top-width: 0;
 }
 
-#vkmnfnsifc .gt_heading {
+#fxgtctyecr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -427,13 +423,13 @@ List of countries in Europe
   border-right-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_bottom_border {
+#fxgtctyecr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_col_headings {
+#fxgtctyecr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -448,7 +444,7 @@ List of countries in Europe
   border-right-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_col_heading {
+#fxgtctyecr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -468,7 +464,7 @@ List of countries in Europe
   overflow-x: hidden;
 }
 
-#vkmnfnsifc .gt_column_spanner_outer {
+#fxgtctyecr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -480,15 +476,15 @@ List of countries in Europe
   padding-right: 4px;
 }
 
-#vkmnfnsifc .gt_column_spanner_outer:first-child {
+#fxgtctyecr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vkmnfnsifc .gt_column_spanner_outer:last-child {
+#fxgtctyecr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vkmnfnsifc .gt_column_spanner {
+#fxgtctyecr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -500,11 +496,11 @@ List of countries in Europe
   width: 100%;
 }
 
-#vkmnfnsifc .gt_spanner_row {
+#fxgtctyecr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vkmnfnsifc .gt_group_heading {
+#fxgtctyecr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -530,7 +526,7 @@ List of countries in Europe
   text-align: left;
 }
 
-#vkmnfnsifc .gt_empty_group_heading {
+#fxgtctyecr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -545,15 +541,15 @@ List of countries in Europe
   vertical-align: middle;
 }
 
-#vkmnfnsifc .gt_from_md > :first-child {
+#fxgtctyecr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vkmnfnsifc .gt_from_md > :last-child {
+#fxgtctyecr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vkmnfnsifc .gt_row {
+#fxgtctyecr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -572,7 +568,7 @@ List of countries in Europe
   overflow-x: hidden;
 }
 
-#vkmnfnsifc .gt_stub {
+#fxgtctyecr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -585,7 +581,7 @@ List of countries in Europe
   padding-right: 5px;
 }
 
-#vkmnfnsifc .gt_stub_row_group {
+#fxgtctyecr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -599,15 +595,15 @@ List of countries in Europe
   vertical-align: top;
 }
 
-#vkmnfnsifc .gt_row_group_first td {
+#fxgtctyecr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vkmnfnsifc .gt_row_group_first th {
+#fxgtctyecr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vkmnfnsifc .gt_summary_row {
+#fxgtctyecr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -617,16 +613,16 @@ List of countries in Europe
   padding-right: 5px;
 }
 
-#vkmnfnsifc .gt_first_summary_row {
+#fxgtctyecr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_first_summary_row.thick {
+#fxgtctyecr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vkmnfnsifc .gt_last_summary_row {
+#fxgtctyecr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -636,7 +632,7 @@ List of countries in Europe
   border-bottom-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_grand_summary_row {
+#fxgtctyecr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -646,7 +642,7 @@ List of countries in Europe
   padding-right: 5px;
 }
 
-#vkmnfnsifc .gt_first_grand_summary_row {
+#fxgtctyecr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -656,7 +652,7 @@ List of countries in Europe
   border-top-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_last_grand_summary_row_top {
+#fxgtctyecr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,11 +662,11 @@ List of countries in Europe
   border-bottom-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_striped {
+#fxgtctyecr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vkmnfnsifc .gt_table_body {
+#fxgtctyecr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -679,7 +675,7 @@ List of countries in Europe
   border-bottom-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_footnotes {
+#fxgtctyecr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -693,7 +689,7 @@ List of countries in Europe
   border-right-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_footnote {
+#fxgtctyecr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -702,7 +698,7 @@ List of countries in Europe
   padding-right: 5px;
 }
 
-#vkmnfnsifc .gt_sourcenotes {
+#fxgtctyecr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -716,7 +712,7 @@ List of countries in Europe
   border-right-color: #D3D3D3;
 }
 
-#vkmnfnsifc .gt_sourcenote {
+#fxgtctyecr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -724,63 +720,63 @@ List of countries in Europe
   padding-right: 5px;
 }
 
-#vkmnfnsifc .gt_left {
+#fxgtctyecr .gt_left {
   text-align: left;
 }
 
-#vkmnfnsifc .gt_center {
+#fxgtctyecr .gt_center {
   text-align: center;
 }
 
-#vkmnfnsifc .gt_right {
+#fxgtctyecr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vkmnfnsifc .gt_font_normal {
+#fxgtctyecr .gt_font_normal {
   font-weight: normal;
 }
 
-#vkmnfnsifc .gt_font_bold {
+#fxgtctyecr .gt_font_bold {
   font-weight: bold;
 }
 
-#vkmnfnsifc .gt_font_italic {
+#fxgtctyecr .gt_font_italic {
   font-style: italic;
 }
 
-#vkmnfnsifc .gt_super {
+#fxgtctyecr .gt_super {
   font-size: 65%;
 }
 
-#vkmnfnsifc .gt_footnote_marks {
+#fxgtctyecr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vkmnfnsifc .gt_asterisk {
+#fxgtctyecr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vkmnfnsifc .gt_indent_1 {
+#fxgtctyecr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vkmnfnsifc .gt_indent_2 {
+#fxgtctyecr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vkmnfnsifc .gt_indent_3 {
+#fxgtctyecr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vkmnfnsifc .gt_indent_4 {
+#fxgtctyecr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vkmnfnsifc .gt_indent_5 {
+#fxgtctyecr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -789,34 +785,34 @@ List of countries in Europe
 <caption>Top 5 countries with the highest GDP per capital</caption>
 <thead>
 <tr class="header gt_col_headings">
-<th id="country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">country</th>
+<th id="country" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">country</th>
 <th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">year</th>
 <th id="gdpPercap" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gdpPercap</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="country">Norway</td>
+<td class="gt_row gt_center" headers="country">Norway</td>
 <td class="gt_row gt_right" headers="year">2007</td>
 <td class="gt_row gt_right" headers="gdpPercap">49,357.19</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="country">Ireland</td>
+<td class="gt_row gt_center" headers="country">Ireland</td>
 <td class="gt_row gt_right" headers="year">2007</td>
 <td class="gt_row gt_right" headers="gdpPercap">40,676.00</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="country">Switzerland</td>
+<td class="gt_row gt_center" headers="country">Switzerland</td>
 <td class="gt_row gt_right" headers="year">2007</td>
 <td class="gt_row gt_right" headers="gdpPercap">37,506.42</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="country">Netherlands</td>
+<td class="gt_row gt_center" headers="country">Netherlands</td>
 <td class="gt_row gt_right" headers="year">2007</td>
 <td class="gt_row gt_right" headers="gdpPercap">36,797.93</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="country">Iceland</td>
+<td class="gt_row gt_center" headers="country">Iceland</td>
 <td class="gt_row gt_right" headers="year">2007</td>
 <td class="gt_row gt_right" headers="gdpPercap">36,180.79</td>
 </tr>
@@ -846,13 +842,17 @@ List of countries in Europe
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, </span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Population"</span>, </span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Average Population of Countries in"</span>, params<span class="sc">$</span>continent_name),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"From 1952 - 2007 at 5-year interval"</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"From"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">min</span>(continent_df<span class="sc">$</span>year), <span class="st">"-"</span>, <span class="fu">max</span>(continent_df<span class="sc">$</span>year),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"at 5-year Intervals"</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-avg-pop-plot" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" data-cap-location="margin" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-avg-pop-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="hello_quarto_files/figure-html/fig-avg-pop-plot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="hello_quarto_files/figure-html/fig-avg-pop-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
+<a href="hello_quarto_files/figure-html/fig-avg-pop-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="hello_quarto_files/figure-html/fig-avg-pop-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-avg-pop-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Average population count
@@ -864,7 +864,7 @@ Figure&nbsp;1: Average population count
 <p>For more info, see <a href="#fig-avg-pop-plot" class="quarto-xref">Figure&nbsp;1</a></p>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GDP per capital</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>continent_df <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> color)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> country)) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">scale_cut =</span> scales<span class="sc">::</span><span class="fu">cut_short_scale</span>())</span>
@@ -872,28 +872,31 @@ Figure&nbsp;1: Average population count
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, </span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"GDP per Capital"</span>, </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"GDP per Capital from 1950 - 2007"</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Average GDP per Capital</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>continent_df <span class="sc">|&gt;</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, color) <span class="sc">|&gt;</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_gdpp =</span> <span class="fu">mean</span>(gdpPercap)) <span class="sc">|&gt;</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> avg_gdpp, <span class="at">y =</span> <span class="fu">fct_reorder</span>(country, avg_gdpp), <span class="at">fill =</span> color)) <span class="sc">+</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>()) <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GDP per Capital"</span>, </span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Country"</span>, </span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average GDP per Capital for each Country"</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell column-screen-inset-shaded quarto-layout-panel" data-layout-ncol="2" data-layout-nrow="1">
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"GDP per Capital from"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">min</span>(continent_df<span class="sc">$</span>year), <span class="st">"-"</span>, <span class="fu">max</span>(continent_df<span class="sc">$</span>year)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Average GDP per Capital</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>continent_df <span class="sc">|&gt;</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_gdpp =</span> <span class="fu">mean</span>(gdpPercap)) <span class="sc">|&gt;</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> avg_gdpp, <span class="at">y =</span> <span class="fu">fct_reorder</span>(country, avg_gdpp), <span class="at">fill =</span> country)) <span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GDP per Capital"</span>, </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Country"</span>, </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average GDP per Capital for each Country"</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell column-screen-inset-shaded quarto-layout-panel" data-layout-nrow="1" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hello_quarto_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>GDP-per-Cap</figcaption>
+<figcaption>GDP per Capital</figcaption>
 </figure>
 </div>
 </div>
@@ -901,7 +904,7 @@ Figure&nbsp;1: Average population count
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hello_quarto_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Average GDP-per-Cap</figcaption>
+<figcaption>Average GDP per Capital</figcaption>
 </figure>
 </div>
 </div>
@@ -1342,7 +1345,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

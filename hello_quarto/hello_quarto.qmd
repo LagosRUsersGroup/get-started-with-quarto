@@ -41,7 +41,7 @@ library(gt)
 
 ```{r}
 #| code-fold: true
-#| code-summary: Reset Default ggplot2 Theme 
+#| code-summary: Reset Default ggplot2 Theme Code
 
 
 custome_theme <- theme_minimal() +
@@ -60,17 +60,13 @@ theme_set(custome_theme)
 
 ```{r}
 continent_df <- gapminder |>
-  inner_join(
-    enframe(country_colors) |> rename(country = name, color = value), 
-    by = "country"
-  ) |>
   filter(continent == params$continent_name) |>
   select(-continent)
 
 ```
 
 
-::: {.bg-primary .text-white .p-4 .m-3 .rounded-2 #my-callout-block}
+::: {.bg-primary .text-white .p-3 .m-3 .rounded-2 #my-callout-block}
 
 **Data Summary**  
 Using the gapminder data from version (`r packageVersion("gapminder")`) of the gapminder R package. The selected continent **`r params$continent_name`**, contains a total of `r length(unique(continent_df$country))` unique countries, and the data captures records of `r colnames(continent_df)` from `r min(continent_df$year)` to `r max(continent_df$year)` at 5-year intervals for all countries.
@@ -198,7 +194,11 @@ continent_df |>
     x = NULL, 
     y = "Population", 
     title = paste("Average Population of Countries in", params$continent_name),
-    subtitle = "From 1952 - 2007 at 5-year interval"
+    subtitle = paste(
+      "From",
+      min(continent_df$year), "-", max(continent_df$year),
+      "at 5-year Intervals"
+    )
   )
 
 ```
@@ -213,12 +213,12 @@ For more info, see @fig-avg-pop-plot
 #| layout-nrow: 1
 #| column: screen-inset-shaded
 #| fig-cap: 
-#|  - GDP-per-Cap 
-#|  - Average GDP-per-Cap 
+#|  - GDP per Capital
+#|  - Average GDP per Capital
 
 # GDP per capital
 continent_df |>
-  ggplot(aes(x = year, y = gdpPercap, color = color)) +
+  ggplot(aes(x = year, y = gdpPercap, color = country)) +
   geom_line(show.legend = FALSE) +
   scale_y_continuous(
     labels = scales::label_number(scale_cut = scales::cut_short_scale())
@@ -226,16 +226,19 @@ continent_df |>
   labs(
     x = NULL, 
     y = "GDP per Capital", 
-    title = "GDP per Capital from 1950 - 2007"
+    title = paste(
+      "GDP per Capital from",
+       min(continent_df$year), "-", max(continent_df$year)
+    )
   )
 
 
 # Average GDP per Capital
 continent_df |>
-  group_by(country, color) |>
+  group_by(country) |>
   summarise(avg_gdpp = mean(gdpPercap)) |>
   
-  ggplot(aes(x = avg_gdpp, y = fct_reorder(country, avg_gdpp), fill = color)) +
+  ggplot(aes(x = avg_gdpp, y = fct_reorder(country, avg_gdpp), fill = country)) +
   geom_col(show.legend = FALSE) +
   scale_x_continuous(labels = scales::label_comma()) +
   labs(
