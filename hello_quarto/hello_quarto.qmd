@@ -21,11 +21,9 @@ params:
 ```{r}
 #| eval: false
 
-install.packages(tidyverse)
-install.packages(gapminder)
-install.packages(gt)
-install.packages(glue)
-install.packages(cli)
+install.packages("tidyverse")
+install.packages("gapminder")
+install.packages("gt")
 ```
 
 #### Load libraries
@@ -39,23 +37,6 @@ library(gt)
 ```
 
 
-```{r}
-#| code-fold: true
-#| code-summary: Reset Default ggplot2 Theme Code
-
-
-custome_theme <- theme_minimal() +
-  theme(
-    plot.title = element_text(color = "grey46"),
-    plot.subtitle = element_text(color = "grey46"),
-    axis.title = element_text(color = "grey51")
-  )
-
-theme_set(custome_theme)
-```
-
-<br>
-
 ### Data Preprocessing
 
 ```{r}
@@ -68,8 +49,7 @@ continent_df <- gapminder |>
 
 ::: {.bg-primary .text-white .p-3 .m-3 .rounded-2 #my-callout-block}
 
-**Data Summary**  
-Using the gapminder data from version (`r packageVersion("gapminder")`) of the gapminder R package. The selected continent **`r params$continent_name`**, contains a total of `r length(unique(continent_df$country))` unique countries, and the data captures records of `r colnames(continent_df)` from `r min(continent_df$year)` to `r max(continent_df$year)` at 5-year intervals for all countries.
+This is a custom **Callout Block** created using bootstrap classes
 
 :::
 
@@ -87,7 +67,11 @@ Using the gapminder data from version (`r packageVersion("gapminder")`) of the g
 
 ## List of countries in `r params$continent_name`
 
-**`r paste0(":", unique(continent_df$country))`**
+```{r}
+#| echo: false
+
+paste(unique(continent_df$country))
+```
 
 :::
 
@@ -103,7 +87,7 @@ continent_df |>                                #<1>
 ```
 1. The filtered continent data frame.
 2. Group the continent data frame by country.
-3. Summarized the grouped data frame by the average life expectancy for each country for all the years in the data. 
+3. Summaries the grouped data by the average life expectancy in each country across all available years.
 4. Sort the summarized data by the `avg_life_exp` in descending order.
 
 
@@ -172,6 +156,22 @@ continent_df |>
 ## Charts
 
 ```{r}
+#| code-fold: true
+#| code-summary: Reset Default ggplot2 Theme Code
+
+
+custome_theme <- theme_minimal() +
+  theme(
+    plot.title = element_text(color = "grey46"),
+    plot.subtitle = element_text(color = "grey46"),
+    axis.title = element_text(color = "grey51")
+  )
+
+theme_set(custome_theme)
+```
+
+
+```{r}
 #| fig-width: 8
 #| fig-height: 4
 #| fig-align: center
@@ -213,8 +213,8 @@ For more info, see @fig-avg-pop-plot
 #| layout-nrow: 1
 #| column: screen-inset-shaded
 #| fig-cap: 
-#|  - GDP per Capital
-#|  - Average GDP per Capital
+#|  - "GDP per Capital"
+#|  - "Average GDP per Capital"
 
 # GDP per capital
 continent_df |>
