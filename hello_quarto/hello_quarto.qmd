@@ -160,14 +160,14 @@ continent_df |>
 #| code-summary: Reset Default ggplot2 Theme Code
 
 
-custome_theme <- theme_minimal() +
+custom_theme <- theme_minimal() +
   theme(
     plot.title = element_text(color = "grey46"),
     plot.subtitle = element_text(color = "grey46"),
     axis.title = element_text(color = "grey51")
   )
 
-theme_set(custome_theme)
+theme_set(custom_theme)
 ```
 
 
