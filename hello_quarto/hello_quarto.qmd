@@ -26,7 +26,7 @@ install.packages("gapminder")
 install.packages("gt")
 ```
 
-#### Load libraries
+#### Import libraries
 ```{r}
 #| message: false
 #| warning: false
